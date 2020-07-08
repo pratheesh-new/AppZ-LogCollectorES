@@ -4,22 +4,22 @@ app:
   notify: pprasannan@cloudbourne.co
 build:
   version: 2.9
-  env: DEV
+  env: QA
   build_file: none
   output_files: output/*.zip
-  image_template: elasticsearch-5.6
+  image_template: elasticsearch-6.8
   image_name: nutanix/log-collector-es
 deploy:
-  context: nutanix/DEV
+  context: nutanix/QA
   replicas: 1
   port:
   - 9200
   - 9300
 volumes:
-- claim: elasticsearch-data
+- claim: elasticsearch-data-qa
   mount: /appz/data
   name: data
 monitor:
   notify: pprasannan@cloudbourne.co      
 properties:
-  revision : 01
+  revision : 02
